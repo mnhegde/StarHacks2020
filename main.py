@@ -91,7 +91,7 @@ def signup():
 def index():
     searchform = SearchForm()
     if searchform.validate_on_submit():
-        return redirect('/farms/'+searchform.search.data)
+        return redirect('/farmsearch/'+searchform.search.data)
 
     return render_template('home.html',searchform=searchform)
 
@@ -100,40 +100,32 @@ def index():
 def home():
     searchform = SearchForm()
     if searchform.validate_on_submit():
-        return redirect('/farms/'+searchform.search.data)
+        return redirect('/farmsearch/'+searchform.search.data)
 
     return render_template('about.html',searchform=searchform)
 
-@app.route('/farms/<farm>/', methods = ['GET','POST'])
+@app.route('/farms', methods = ['GET','POST'])
 def farms(farm):
     searchform = SearchForm()
     if searchform.validate_on_submit():
-        return redirect('/farms/'+searchform.search.data)
-    else:
-        farms = User.query.filter_by(farmname=farm).all()
-        if farms == []:
-            farms = db.session.query(User).all()
-            return render_template('farms.html', farms=farms, searchform=searchform)
-        else:
-            return render_template('farms.html', farms=farms,searchform=searchform)
+        return redirect('/farmsearch/'+searchform.search.data)
+
+    farms = db.session.query(User).all()
+    return render_template('farms.html', farms=farms, searchform=searchform)
 
 @app.route('/farmsearch/<farm>/')
 def farmsearch(farm):
     searchform = SearchForm()
     if searchform.validate_on_submit():
-        return redirect('/farms/'+searchform.search.data)
+        return redirect('/farmsearch/'+searchform.search.data)
 
-    if request.method == 'POST':
-        id_num = request.json
-        farm = db.session.query(User).filter(User.id == id_num).first()
-        return json.dumps(farm.address)
+
+    farms = User.query.filter_by(farmname=farm).all()
+    if farms == []:
+        farms = db.session.query(User).all()
+        return render_template('farms.html', farms=farms, searchform=searchform)
     else:
-        farms = User.query.filter_by(farmname=farm).all()
-        if farms == []:
-            farms = db.session.query(User).all()
-            return render_template('farms.html', farms=farms, searchform=searchform)
-        else:
-            return render_template('farms.html', farms=farms,searchform=searchform)
+        return render_template('farms.html', farms=farms,searchform=searchform)
 
 @app.route('/maps/<username>', methods = ['GET', 'POST'])
 def maps(username):
@@ -144,7 +136,7 @@ def maps(username):
     else:
         searchform = SearchForm()
         if searchform.validate_on_submit():
-            return redirect('/farms/'+searchform.search.data)
+            return redirect('/farmsearch/'+searchform.search.data)
     
     return render_template('maps.html',searchform=searchform)
 
@@ -152,7 +144,7 @@ def maps(username):
 def newfarm():
     searchform = SearchForm()
     if searchform.validate_on_submit():
-        return redirect('/farms/'+searchform.search.data)
+        return redirect('/farmsearch/'+searchform.search.data)
     
 
 
