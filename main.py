@@ -111,7 +111,7 @@ def farms(farm):
     if searchform.validate_on_submit():
         return redirect('/farms/'+searchform.search.data)
 
-    farms = User.query.filter_by(fname=personal_user).all()
+    farms = User.query.filter_by(fname=farm).all()
     if farms == []:
         farms = db.session.query(User).all()
     farms = db.session.query(User).all()
