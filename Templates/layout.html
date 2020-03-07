@@ -34,22 +34,23 @@
                     <i class='dropdown icon'></i>
                     <div class='menu'>
                         <div class='item'>
-                            <span class='text'>English</span>
+                            <a href='/'><span class='text' style='color: black;'>English</span></a>
                         </div>
                         <div class='item'>
-                            <span class='text'>Spanish</span>
+                            <a href='/espanol'><span class='text' style='color: black;'>Espanol</span></a>
                         </div>
                         <div class='item'>
-                            <span class='text'>Arabic</span>
+                          <a href='/arabic'><span class='text' style='color: black;'>عربى</span>
                         </div>
                         <div class='item'>
-                          <span class='text'>Portugese</span>
+                          <a href='/portuguese'><span class='text' style='color: black;'>Português</span>
                       </div>
                       <div class='item'>
-                        <span class='text'>Khmer</span>
+                        <a href='/khmer'><span class='text' style='color: black;'>Khmer</span>
                       </div>
                     </div>
                 </div>
+                  
                 <div class="right menu">
                     <div class="ui right aligned category search item">
                       <div class="ui transparent icon input">
@@ -58,7 +59,7 @@
                               {{ searchform.search(size=32) }}
                               {{ searchform.submit() }}
                         </form>
-                        <i class="search link icon"></i>
+                       
                       </div>
                       <div class="results"></div>
                     </div>
@@ -84,6 +85,7 @@
         </div>
     
             </div>
+
             {%block content%}
     {%endblock%} 
     </body>

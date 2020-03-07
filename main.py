@@ -54,7 +54,7 @@ def login():
             flash('The user doesn\'t exist or the password provided was incorrect', 'error')
             return redirect('/login')  
 
-        return 'good'
+        return redirect('/')
     else:
         return render_template('login.html')
 
@@ -79,15 +79,16 @@ def signup():
             farm = User[username, password, firstname, lastname, email]
             db.session.commit(farm)
             db.session.commit()
-            return 'signed up and logged in'
+            
+            return redirect('/')
         else:
             flash('Passwords didn\'t match!', 'error')
             return redirect('/signup')  
     else:
         return render_template('signup.html') 
 
+
 @app.route('/',  methods = ['GET','POST'])
-@app.route('/home',  methods = ['GET','POST'])
 def index():
     searchform = SearchForm()
     if searchform.validate_on_submit():
@@ -95,6 +96,33 @@ def index():
 
     return render_template('home.html',searchform=searchform)
 
+@app.route('/espanol')
+def espanol():
+    searchform = SearchForm()
+    if searchform.validate_on_submit():
+        return redirect('/farms/'+searchform.search.data)
+    return render_template('homespanish.html', searchform=searchform)
+
+@app.route('/arabic')
+def arabic():
+    searchform = SearchForm()
+    if searchform.validate_on_submit():
+        return redirect('/farms/'+searchform.search.data)
+    return render_template('homearabic.html', searchform=searchform)
+
+@app.route('/portuguese')
+def portuguese():
+    searchform = SearchForm()
+    if searchform.validate_on_submit():
+        return redirect('/farms/'+searchform.search.data)
+    return render_template('homeportuguese.html', searchform=searchform)
+
+@app.route('/khmer')
+def khmer():
+    searchform = SearchForm()
+    if searchform.validate_on_submit():
+        return redirect('/farms/'+searchform.search.data)
+    return render_template('homekhmer.html', searchform=searchform)
 
 @app.route('/about',  methods = ['GET','POST'])
 def home():
