@@ -12,3 +12,7 @@ class NewFarmForm(FlaskForm):
     username = StringField('Username:', validators=[DataRequired()])
     password = StringField('Password:', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class SearchForm(FlaskForm):
+    search = StringField('search', validators=[DataRequired()])
+    submit = SubmitField('Search')
