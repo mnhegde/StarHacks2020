@@ -91,7 +91,7 @@ def signup():
 def index():
     searchform = SearchForm()
     if searchform.validate_on_submit():
-        return redirect('/farms/'+searchform.search.data)
+        return redirect('/farmsearch/'+searchform.search.data)
 
     return render_template('home.html',searchform=searchform)
 
@@ -100,7 +100,7 @@ def index():
 def home():
     searchform = SearchForm()
     if searchform.validate_on_submit():
-        return redirect('/farms/'+searchform.search.data)
+        return redirect('/farmsearch/'+searchform.search.data)
 
     return render_template('about.html',searchform=searchform)
 
