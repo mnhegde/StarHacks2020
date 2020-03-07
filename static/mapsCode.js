@@ -21,11 +21,14 @@ function initMap() {
     latitude = parseFloat(chords[0])
     longitude = parseFloat(chords[1])
     let location;
-    let map;
+    var map;
     location = {lat : latitude, lng: longitude};
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: location,
-        zoom: 8})
-    })
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: location, 
+        zoom: 8},
+    
+    marker = new google.maps.Map(position:location,map:map)
+  
+  ))
  
 }
