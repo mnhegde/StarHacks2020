@@ -22,7 +22,7 @@
                                 <i class='thumbtack icon' ></i>About</span>
                           </div>
                           <div class='item'>
-                              <span class='text' onclick="location='/farms'">
+                              <span class='text' onclick="location='/farms/f'">
                                 <i class='users icon'></i>Farms</span>
                           </div>
                           
@@ -53,7 +53,11 @@
                 <div class="right menu">
                     <div class="ui right aligned category search item">
                       <div class="ui transparent icon input">
-                        <input class="prompt" type="text" placeholder="Search for farms">
+                        <form action="" method="post" novalidate>
+                          {{ searchform.hidden_tag() }}
+                              {{ searchform.search(size=32) }}
+                              {{ searchform.submit() }}
+                        </form>
                         <i class="search link icon"></i>
                       </div>
                       <div class="results"></div>
