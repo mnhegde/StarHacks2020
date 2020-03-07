@@ -1,8 +1,8 @@
-{% extends "Layout.html"%}
+{% extends "layout.html"%}
 {%block content%}
 {% for farm in farms %}
 
-<h2>{{user.farm}}</2>
+<h2>{{farm.farmname}}</2>
 <p>
 <pre>
     <b> Type:</b> {{farm.farmtype}}

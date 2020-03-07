@@ -1,0 +1,26 @@
+{% extends "layout.html"%}
+{%block content%}
+
+<h4>New Farm:</h4>
+<p>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            <p>{{form.farmname.label}} <br>
+                {{ form.farmname(size=32) }}</p>
+            <p>{{form.address.label}} <br>
+                {{ form.address(size=32) }}</p>
+            <p>{{form.farmtype.label}} <br>
+                {{ form.farmtype(size=32) }}</p>
+            <p>{{form.about.label}} <br>
+                {{ form.about(size=32) }}</p>
+            <p>{{form.username.label}} <br>
+                {{ form.username(size=32) }}</p>
+            <p>{{form.password.label}} <br>
+                {{ form.password(size=32) }}</p>
+            <p>{{ form.submit() }}</p>
+        </p>
+    </form>
+</p>
+
+{%endblock content%}
