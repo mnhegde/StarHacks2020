@@ -96,7 +96,7 @@ def home():
 @app.route('/farms', methods = ['GET','POST'])
 def farms():
 
-    farms = db.serssion.query(User).all()
+    farms = db.session.query(User).all()
     return render_template('farms.html', farms=farms)
 
 if __name__ == '__main__':
