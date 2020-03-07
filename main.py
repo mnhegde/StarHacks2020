@@ -104,38 +104,25 @@ def home():
 
     return render_template('about.html',searchform=searchform)
 
-@app.route('/farms/<farm>/', methods = ['GET','POST'])
-def farms(farm):
+
+@app.route('/farms', methods = ['GET','POST'])
+def farms():
+    farms = db.session.query(User).all()
+    return render_template('farms.html', farms=farms)
+
+@app.route('/maps/<id>', methods = ['GET', 'POST'])
+def maps(id):
     searchform = SearchForm()
     if searchform.validate_on_submit():
         return redirect('/farms/'+searchform.search.data)
-    else:
-        farms = User.query.filter_by(farmname=farm).all()
-        if farms == []:
-            farms = db.session.query(User).all()
-            return render_template('farms.html', farms=farms, searchform=searchform)
-        else:
-            return render_template('farms.html', farms=farms,searchform=searchform)
 
-@app.route('/maps`', methods = ['GET', 'POST'])
-def maps(username):
-    if request.method == 'POST':
-        id_num = request.json
-        farm = db.session.query(User).filter(User.id == id_num).first()
-        return json.dumps(farm.address)
-    else:
-        searchform = SearchForm()
-        if searchform.validate_on_submit():
-            return redirect('/farms/'+searchform.search.data)
-    
-    return render_template('maps.html',searchform=searchform)
+    return render_template('maps.html', id=id,searchform=searchform)
 
 @app.route('/newfarm', methods = ['GET', 'POST'])
 def newfarm():
     searchform = SearchForm()
     if searchform.validate_on_submit():
         return redirect('/farms/'+searchform.search.data)
-    
 
 
     form = NewFarmForm()
@@ -154,6 +141,14 @@ def newfarm():
         db.session.commit()
 
     return render_template('newfarm.html',form=form,searchform=searchform)
+
+
+@app.route('/api/farmmaps', methods=['GET', 'POST'])
+def farmmaps():
+    if request.method == 'POST':
+        id_num = request.json
+        farm = db.session.query(User).filter(User.id == id_num).first()
+        return json.dumps(farm.address)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
