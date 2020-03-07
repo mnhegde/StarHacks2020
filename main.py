@@ -39,10 +39,10 @@ def login():
         username = data['username']
         password = data['password']
         flag = False
-        '''
-        Originally built with example list. Will change for database
-        for user in users: 
-            if user[0] == username: 
+        
+        farms = db.session.query(User).all()
+        for farm in farms: 
+            if farm.username == username: 
                 flag = True
                 if checkPasswordHash(password, user[1]):
                     return 'logged in'
@@ -70,12 +70,13 @@ def signup():
         confirmPassword = request.form['confirmPassword']
 
         if password == confirmPassword:
-            for user in users:
-                if user[0]==username:
+            farms = db.session.query(User).all()
+            for farm in farms:
+                if farm.username == username:
                     flash('This username already exists', 'error')
                     return redirect('/signup')
             password = makePasswordHash(confirmPassword)
-            data = [username, password, firstname, lastname, email]
+            farm = User[username, password, firstname, lastname, email]
             users.append(data)
             return 'signed up and logged in'
         else:
