@@ -107,8 +107,13 @@ def home():
 
 @app.route('/farms', methods = ['GET','POST'])
 def farms():
+    searchform = SearchForm()
+    if searchform.validate_on_submit():
+        return redirect('/farms/'+searchform.search.data)
+
+
     farms = db.session.query(User).all()
-    return render_template('farms.html', farms=farms)
+    return render_template('farms.html', farms=farms, searchform=searchform)
 
 @app.route('/maps/<id>', methods = ['GET', 'POST'])
 def maps(id):
