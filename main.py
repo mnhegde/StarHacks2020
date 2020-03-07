@@ -109,11 +109,6 @@ def farms(farm):
     searchform = SearchForm()
     if searchform.validate_on_submit():
         return redirect('/farms/'+searchform.search.data)
-
-    if request.method == 'POST':
-        id_num = request.json
-        farm = db.session.query(User).filter(User.id == id_num).first()
-        return json.dumps(farm.address)
     else:
         farms = User.query.filter_by(farmname=farm).all()
         if farms == []:
@@ -122,11 +117,16 @@ def farms(farm):
         else:
             return render_template('farms.html', farms=farms,searchform=searchform)
 
-@app.route('/maps/<username>', methods = ['GET', 'POST'])
+@app.route('/maps`', methods = ['GET', 'POST'])
 def maps(username):
-    searchform = SearchForm()
-    if searchform.validate_on_submit():
-        return redirect('/farms/'+searchform.search.data)
+    if request.method == 'POST':
+        id_num = request.json
+        farm = db.session.query(User).filter(User.id == id_num).first()
+        return json.dumps(farm.address)
+    else:
+        searchform = SearchForm()
+        if searchform.validate_on_submit():
+            return redirect('/farms/'+searchform.search.data)
     
     return render_template('maps.html',searchform=searchform)
 

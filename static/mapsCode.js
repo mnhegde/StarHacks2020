@@ -4,7 +4,7 @@ function initMap() {
   path = window.location.pathname.split('/')
   console.log(JSON.stringify(path[2]))
 
-  fetch('/farms', {
+  fetch('/maps', {
 
     headers: {
       'Accept': 'application/json',
