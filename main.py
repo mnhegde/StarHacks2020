@@ -102,22 +102,9 @@ def farms():
     farms = db.session.query(User).all()
     return render_template('farms.html', farms=farms)
 
-@app.route('/newfarm', methods = ['GET','POST'])
-def adduser_page():
-
-    form = NewFarmForm()
-    if form.validate_on_submit():
-        farm = User(farmname=form.farmname.data, 
-        address=form.address.data, 
-        farmtype=form.farmtype.data,
-        about=form.about.data,
-        username=form.username.data,
-        password=form.password.data)
-        db.session.add(farm)
-        db.session.commit()
-
-    return render_template('newfarm.html', form=form)
-
+@app.route('/maps/<username>', methods = ['GET', 'POST'])
+def maps(username):
+    return render_template('maps.html', username=username)
 
 
 
