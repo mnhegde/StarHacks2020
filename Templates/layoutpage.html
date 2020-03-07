@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css'>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>
+    </head>
+
+    <body>
+        <div class='ui container'>
+            <div class='ui menu'>
+                <a class='active item' href='/'>
+                    <i class='home icon'></i>
+                    <span class='text'>Home</span></a>
+                <a class='item' href='/about'>
+                    <i class='thumbtack icon'></i>
+                    <span class='text'>About</span></a>
+                <div class='ui simple dropdown item'>
+                    <i class='language icon'></i>Languages
+                    <i class='dropdown icon'></i>
+                    <div class='menu'>
+                        <div class='item'>
+                            <span class='text'>English</span>
+                        </div>
+                        <div class='item'>
+                            <span class='text'>Spanish</span>
+                        </div>
+                        <div class='item'>
+                            <span class='text'>Arabic</span>
+                        </div>
+                        <div class='item'>
+                          <span class='text'>Portugese</span>
+                      </div>
+                      <div class='item'>
+                        <span class='text'>Khmer</span>
+                      </div>
+                    </div>
+                </div>
+                <div class="right menu">
+                    <div class="ui right aligned category search item">
+                      <div class="ui transparent icon input">
+                        <input class="prompt" type="text" placeholder="Search for farms">
+                        <i class="search link icon"></i>
+                      </div>
+                      <div class="results"></div>
+                    </div>
+                    <div class="ui simple dropdown item">
+                      <i class="user icon"></i>
+                      <span class="text" id="username">User</span>
+                      <i class="dropdown icon"></i>
+                      <div class='menu'>
+                        <div class="item">
+                          <a href="/myaccount"><i class="user outline icon" style="color: black; text-decoration: none;"></i>
+                            <span class="text" style="color: black; text-decoration: none;">My Account</span></a>
+                        </div>
+                        <div class="item">
+                          <a href='/settings'><i class="cogs icon" style="color: black; text-decoration: none;"></i>
+                            <span class="text" style="color: black; text-decoration: none;">Settings</span></a>
+                        </div>
+                        <div class="item">
+                          <a href="/logout"><i class="sign out alternate icon" style="color: black; text-decoration: none;"></i>
+                            <span class="text" style="color: black; text-decoration: none;">Sign Out</span></a>
+                        </div>
+                      </div>
+                    </div>
+        </div>
+    </body>
+</html>
