@@ -124,7 +124,7 @@ def maps(id):
         return redirect('/farms/'+searchform.search.data)
 
     return render_template('maps.html', id=id,searchform=searchform)
-w4
+
 @app.route('/newfarm', methods = ['GET', 'POST'])
 def newfarm():
     searchform = SearchForm()
