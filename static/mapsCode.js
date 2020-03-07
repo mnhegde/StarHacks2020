@@ -1,4 +1,6 @@
 
+
+function initMap() {
   path = window.location.pathname.split('/')
   console.log(JSON.stringify(path[2]))
 
@@ -13,16 +15,17 @@
   })
   .then(function(response){
     return response.json()
-
   })
   .then(function (myJson) {
     chords = myJson.split(', ')
-    console.log(chords)
-    let lowell;
+    latitude = parseFloat(chords[0])
+    longitude = parseFloat(chords[1])
+    let location;
     let map;
-    lowell = {lat : chords[0], lng: chords[1]};
+    location = {lat : latitude, lng: longitude};
       map = new google.maps.Map(document.getElementById('map'), {
-        center: lowell,
+        center: location,
         zoom: 8})
-
     })
+ 
+}
