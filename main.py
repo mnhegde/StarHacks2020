@@ -151,7 +151,7 @@ def maps(id):
     if searchform.validate_on_submit():
         return redirect('/farms/'+searchform.search.data)
 
-    return render_template('maps.html', id=id,searchform=searchform)
+    return render_template('maps_test.html', id=id,searchform=searchform)
 
 @app.route('/newfarm', methods = ['GET', 'POST'])
 def newfarm():

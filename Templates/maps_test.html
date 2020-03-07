@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html>
+{% extends "layout.html"%}
+{%block content%}
+
+
   <head>
     <style>
       /* Set the size of the div element that contains the map */
@@ -10,7 +12,6 @@
     </style>
   </head>
   <body>
-    <h3>My Google Maps Demo</h3>
     <!--The div element for the map -->
     <div id="map"></div>
     <script>
@@ -29,4 +30,6 @@ function initMap() {
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR9N8b5aY13LSS-Riy-RrU2SfsZe7JCIM&callback=initMap">
     </script>
   </body>
-</html>
+
+  
+{% endblock content%}

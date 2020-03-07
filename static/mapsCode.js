@@ -20,15 +20,14 @@ function initMap() {
     chords = myJson.split(', ')
     latitude = parseFloat(chords[0])
     longitude = parseFloat(chords[1])
-    let location;
-    var map;
-    location = {lat : latitude, lng: longitude};
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: location, 
-        zoom: 8},
-    
-    marker = new google.maps.Map(position:location,map:map)
+
+    var uluru = {lat: latitude, long_c: longitude};
+
+    var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: uluru});
+
+    var marker = new google.maps.Marker({position: uluru, map: map});
   
-  ))
+  )
  
 }
