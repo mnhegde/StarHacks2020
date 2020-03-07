@@ -99,7 +99,6 @@ def home():
 def farms():
     farms = db.session.query(User).all()
     return render_template('farms.html', farms=farms)
-<<<<<<< HEAD
 
 @app.route('/newfarm', methods = ['GET','POST'])
 def adduser_page():
@@ -118,7 +117,5 @@ def adduser_page():
     return render_template('newfarm.html', form=form)
 
 
-=======
->>>>>>> 1e082844befbd09b9ca06bdb87727ca68ccda837
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
