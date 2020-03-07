@@ -1,0 +1,15 @@
+{% extends "Layout.html"%}
+{%block content%}
+{% for user in users %}
+
+<h2>{{user.farm}}</2>
+<p>
+<pre>
+    <b> Type:</b> {{user.farmtype}}
+    About Us: {{user.about}}
+    User Since: {{user.date_created}}
+</pre>
+
+</p>
+{% endfor %}
+{%endblock content%}
