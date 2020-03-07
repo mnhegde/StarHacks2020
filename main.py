@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 import json
 from datetime import datetime
+from forms import NewFarmForm
 from hashpassword import makePasswordHash, checkPasswordHash
 
 
@@ -99,6 +100,26 @@ def home():
 def farms():
     farms = db.session.query(User).all()
     return render_template('farms.html', farms=farms)
+<<<<<<< HEAD
 
+@app.route('/newfarm', methods = ['GET','POST'])
+def adduser_page():
+
+    form = NewFarmForm()
+    if form.validate_on_submit():
+        farm = User(farmname=form.farmname.data, 
+        address=form.address.data, 
+        farmtype=form.farmtype.data,
+        about=form.about.data,
+        username=form.username.data,
+        password=form.password.data)
+        db.session.add(farm)
+        db.session.commit()
+
+    return render_template('newfarm.html', form=form)
+
+
+=======
+>>>>>>> 1e082844befbd09b9ca06bdb87727ca68ccda837
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
