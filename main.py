@@ -84,6 +84,7 @@ def signup():
         return render_template('signup.html') '''
 
 @app.route('/',  methods = ['GET','POST'])
+@app.route('/home',  methods = ['GET','POST'])
 def index():
     return render_template('home.html')
 
