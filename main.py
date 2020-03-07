@@ -10,17 +10,17 @@ app.config['SECRET_KEY'] = 'hello'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///UserLoginInfoDB.sqlite3'
 
+'''
+user_db = SQLAlchemy(app)
 
-#user_db = SQLAlchemy(app)
-
-#class User(db.Model):
-    #id = db.Column(db.Integer, primary_key=True)
-    #firstname = db.Column(db.String(50))
-    #lastname = db.Column(db.String(50))
-    #username = db.Column(db.String(50))
-    #password = db.Column(db.String(50))
-    #date_created = db.Column(db.DateTime, default=datetime.now)
-
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(50))
+    lastname = db.Column(db.String(50))
+    username = db.Column(db.String(50))
+    password = db.Column(db.String(50))
+    date_created = db.Column(db.DateTime, default=datetime.now)
+'''
 
 users = [['bobsmith', makePasswordHash('hello'), 'bob', 'smith', '123@gmail.com'], ['henrysmith', makePasswordHash('world'), 'henry', 'smith', '123@gmail.com'], ['thomaswayne', makePasswordHash('space'), 'thomas', 'wayne', '123@gmail.com'], ['timcook', makePasswordHash('apple'), 'tim', 'cook', '123@gmail.com']]
 
