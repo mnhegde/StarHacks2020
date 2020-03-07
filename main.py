@@ -18,6 +18,7 @@ class User(db.Model):
     farmname = db.Column(db.String(50), unique=True, nullable=False)
     address = db.Column(db.String(50), unique=True, nullable=False)
     farmtype = db.Column(db.String(50))
+    about = db.Column(db.String(1000))
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50))
     date_created = db.Column(db.DateTime, default=datetime.now)
