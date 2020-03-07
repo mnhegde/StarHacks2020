@@ -98,5 +98,10 @@ def home():
 def farms():
     farms = db.session.query(User).all()
     return render_template('farms.html', farms=farms)
+
+@app.route('/maps/<username>', methods = ['GET', 'POST'])
+def maps(username):
+    return render_template('maps.html', username=username)
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
