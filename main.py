@@ -105,14 +105,15 @@ def home():
     return render_template('about.html',searchform=searchform)
 
 
-@app.route('/farms', methods = ['GET','POST'])
-def farms():
+@app.route('/farms/<farm>/', methods = ['GET','POST'])
+def farms(farm):
     searchform = SearchForm()
     if searchform.validate_on_submit():
         return redirect('/farms/'+searchform.search.data)
 
     farms = User.query.filter_by(fname=personal_user).all()
-    if farms ==
+    if farms == []:
+        farms = db.session.query(User).all()
     farms = db.session.query(User).all()
     return render_template('farms.html', farms=farms, searchform=searchform)
 
