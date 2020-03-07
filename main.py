@@ -97,15 +97,19 @@ def index():
 def home():
     return render_template('about.html')
 
-@app.route('/farms', methods = ['GET','POST'])
-def farms():
+@app.route('/farms/<farm>/', methods = ['GET','POST'])
+def farms(farm):
     if request.method == 'POST':
         id_num = request.json
         farm = db.session.query(User).filter(User.id == id_num).first()
         return json.dumps(farm.address)
     else:
-        farms = db.session.query(User).all()
-        return render_template('farms.html', farms=farms)
+        farms = User.query.filter_by(farmname=farm).all()
+        if farms == []:
+            farms = db.session.query(User).all()
+            return render_template('farms.html', farms=farms)
+        else:
+            return render_template('farms.html', farms=farms)
 
 @app.route('/maps/<username>', methods = ['GET', 'POST'])
 def maps(username):
