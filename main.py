@@ -43,7 +43,7 @@ def login():
         for farm in farms: 
             if farm.username == username: 
                 flag = True
-                if checkPasswordHash(password, user[1]):
+                if checkPasswordHash(password, farm.password):
                     return 'logged in'
                 else:
                     flash('The user doesn\'t exist or the password provided was incorrect', 'error')
@@ -76,7 +76,8 @@ def signup():
                     return redirect('/signup')
             password = makePasswordHash(confirmPassword)
             farm = User[username, password, firstname, lastname, email]
-            users.append(data)
+            db.session.commit(farm)
+            db.session.commit()
             return 'signed up and logged in'
         else:
             flash('Passwords didn\'t match!', 'error')
