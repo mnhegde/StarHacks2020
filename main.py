@@ -38,10 +38,10 @@ def login():
         username = data['username']
         password = data['password']
         flag = False
-        '''
-        Originally built with example list. Will change for database
-        for user in users: 
-            if user[0] == username: 
+        
+        farms = db.session.query(User).all()
+        for farm in farms: 
+            if farm.username == username: 
                 flag = True
                 if checkPasswordHash(password, user[1]):
                     return 'logged in'
@@ -69,19 +69,20 @@ def signup():
         confirmPassword = request.form['confirmPassword']
 
         if password == confirmPassword:
-            for user in users:
-                if user[0]==username:
+            farms = db.session.query(User).all()
+            for farm in farms:
+                if farm.username == username:
                     flash('This username already exists', 'error')
                     return redirect('/signup')
             password = makePasswordHash(confirmPassword)
-            data = [username, password, firstname, lastname, email]
+            farm = User[username, password, firstname, lastname, email]
             users.append(data)
             return 'signed up and logged in'
         else:
             flash('Passwords didn\'t match!', 'error')
             return redirect('/signup')  
     else:
-        return render_template('signup.html') '''
+        return render_template('signup.html') 
 
 @app.route('/',  methods = ['GET','POST'])
 @app.route('/home',  methods = ['GET','POST'])
@@ -95,9 +96,7 @@ def home():
 
 @app.route('/farms', methods = ['GET','POST'])
 def farms():
-
-    farms = db.serssion.query(User).all()
+    farms = db.session.query(User).all()
     return render_template('farms.html', farms=farms)
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
