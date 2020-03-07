@@ -82,7 +82,7 @@ def signup():
             flash('Passwords didn\'t match!', 'error')
             return redirect('/signup')  
     else:
-        return render_template('signup.html') '''
+        return render_template('signup.html') 
 
 @app.route('/',  methods = ['GET','POST'])
 @app.route('/home',  methods = ['GET','POST'])
@@ -96,7 +96,6 @@ def home():
 
 @app.route('/farms', methods = ['GET','POST'])
 def farms():
-
     farms = db.session.query(User).all()
     return render_template('farms.html', farms=farms)
 
