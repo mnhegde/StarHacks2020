@@ -185,5 +185,6 @@ def farmmaps():
         farm = db.session.query(User).filter(User.id == id_num).first()
         return json.dumps(farm.address)
 
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
