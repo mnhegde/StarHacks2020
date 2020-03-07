@@ -16,8 +16,8 @@
 
   })
   .then(function (myJson) {
-    console.log(myJson)
     chords = myJson.split(', ')
+    console.log(chords)
     let lowell;
     let map;
     lowell = {lat : chords[0], lng: chords[1]};

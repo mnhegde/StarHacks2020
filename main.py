@@ -102,7 +102,7 @@ def farms():
     if request.method == 'POST':
         id_num = request.json
         farm = db.session.query(User).filter(User.id == id_num).first()
-        return farm.address
+        return json.dumps(farm.address)
     else:
         farms = db.session.query(User).all()
         return render_template('farms.html', farms=farms)
