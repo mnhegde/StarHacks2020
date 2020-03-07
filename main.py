@@ -87,6 +87,7 @@ def signup():
         return render_template('signup.html') 
 
 @app.route('/',  methods = ['GET','POST'])
+
 @app.route('/home',  methods = ['GET','POST'])
 def index():
     return render_template('home.html')
@@ -116,6 +117,8 @@ def adduser_page():
         db.session.commit()
 
     return render_template('newfarm.html', form=form)
+
+
 
 
 if __name__ == '__main__':
