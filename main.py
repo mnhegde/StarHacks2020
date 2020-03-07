@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 import json
+from datetime import datetime
 from hashpassword import makePasswordHash, checkPasswordHash
 
 
@@ -8,10 +9,10 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'hello'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///UserLoginInfoDB.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 
-'''
-user_db = SQLAlchemy(app)
+
+db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -22,9 +23,12 @@ class User(db.Model):
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50))
     date_created = db.Column(db.DateTime, default=datetime.now)
-'''
 
-users = [['bobsmith', makePasswordHash('hello'), 'bob', 'smith', '123@gmail.com'], ['henrysmith', makePasswordHash('world'), 'henry', 'smith', '123@gmail.com'], ['thomaswayne', makePasswordHash('space'), 'thomas', 'wayne', '123@gmail.com'], ['timcook', makePasswordHash('apple'), 'tim', 'cook', '123@gmail.com']]
+
+class Posts(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_created = db.Column(db.DateTime, default=datetime.now)
+    description = db.Column(db.String(1000))
 
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -34,8 +38,10 @@ def login():
         username = data['username']
         password = data['password']
         flag = False
-        for user in users:
-            if user[0] == username:
+        '''
+        Originally built with example list. Will change for database
+        for user in users: 
+            if user[0] == username: 
                 flag = True
                 if checkPasswordHash(password, user[1]):
                     return 'logged in'
@@ -75,7 +81,7 @@ def signup():
             flash('Passwords didn\'t match!', 'error')
             return redirect('/signup')  
     else:
-        return render_template('signup.html')
+        return render_template('signup.html') '''
 
 @app.route('/',  methods = ['GET','POST'])
 def index():
