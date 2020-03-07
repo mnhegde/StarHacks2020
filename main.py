@@ -111,6 +111,25 @@ def farms():
 def maps(username):
     return render_template('maps.html')
 
+@app.route('/newfarm', methods = ['GET', 'POST'])
+def newfarm():
+
+    form = NewFarmForm()
+
+    if form.validate_on_submit():
+        farm = User(
+        farmname=form.farmname.data, 
+        address=form.address.data, 
+        farmtype=form.farmtype.data,
+        about=form.about.data,
+        username=form.username.data,
+        password=form.password.data,
+        )
+
+        db.session.add(farm)
+        db.session.commit()
+
+    return render_template('newfarm.html',form=form)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
