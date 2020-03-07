@@ -99,13 +99,17 @@ def home():
 
 @app.route('/farms', methods = ['GET','POST'])
 def farms():
-    farms = db.session.query(User).all()
-    return render_template('farms.html', farms=farms)
+    if request.method == 'POST':
+        id_num = request.json
+        farm = db.session.query(User).filter(User.id == id_num).first()
+        return farm.address
+    else:
+        farms = db.session.query(User).all()
+        return render_template('farms.html', farms=farms)
 
 @app.route('/maps/<username>', methods = ['GET', 'POST'])
 def maps(username):
-    return render_template('maps.html', username=username)
-
+    return render_template('maps.html')
 
 
 if __name__ == '__main__':
