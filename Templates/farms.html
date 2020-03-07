@@ -7,9 +7,20 @@
 <pre>
     <b> Type:</b> {{farm.farmtype}}
     About Us: {{farm.about}}
-    User Since: {{farm.date_created}}
+    Registered Since: {{farm.date_created}}
+    Find us on maps: <input 
+    type="button" 
+    id = {{farm.id}}maps
+    value="View on maps"/>
 </pre>
-
+<script>
+    id_num = {{farm.id}}
+    id_num = id_num.toString()
+    id = id_num.concat('maps')
+    unique_url = `window.location.href =  '/maps/`.concat(id_num,`'`)
+    button = document.getElementById(id)
+    button.setAttribute('onclick',unique_url)
+</script>
 </p>
 {% endfor %}
 {%endblock content%}
