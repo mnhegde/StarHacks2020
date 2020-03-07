@@ -84,6 +84,7 @@ def signup():
         return render_template('signup.html') '''
 
 @app.route('/',  methods = ['GET','POST'])
+@app.route('/home',  methods = ['GET','POST'])
 def index():
     return render_template('home.html')
 
@@ -91,6 +92,12 @@ def index():
 @app.route('/about',  methods = ['GET','POST'])
 def home():
     return render_template('about.html')
+
+@app.route('/farms', methods = ['GET','POST'])
+def farms():
+
+    farms = db.session.query(User).all()
+    return render_template('farms.html', farms=farms)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

@@ -1,0 +1,15 @@
+{% extends "Layout.html"%}
+{%block content%}
+{% for farm in farms %}
+
+<h2>{{user.farm}}</2>
+<p>
+<pre>
+    <b> Type:</b> {{farm.farmtype}}
+    About Us: {{farm.about}}
+    User Since: {{farm.date_created}}
+</pre>
+
+</p>
+{% endfor %}
+{%endblock content%}
