@@ -15,9 +15,10 @@ user_db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(50))
-    lastname = db.Column(db.String(50))
-    username = db.Column(db.String(50))
+    farmname = db.Column(db.String(50), unique=True, nullable=False)
+    address = db.Column(db.String(50), unique=True, nullable=False)
+    farmtype = db.Column(db.String(50))
+    username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50))
     date_created = db.Column(db.DateTime, default=datetime.now)
 '''
