@@ -98,6 +98,5 @@ def farms():
 
     farms = db.serssion.query(User).all()
     return render_template('farms.html', farms=farms)
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
