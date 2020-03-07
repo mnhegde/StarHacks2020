@@ -76,6 +76,10 @@ def signup():
         return render_template('signup.html')
 
 @app.route('/',  methods = ['GET','POST'])
+def index():
+    return render_template('layout2.html')
+
+
 @app.route('/home',  methods = ['GET','POST'])
 def home():
     return render_template('home.html')
