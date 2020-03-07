@@ -1,7 +1,7 @@
 from main import db, User
 from datetime import datetime
 
-user = {'farmname': 'farm2', 'coordinates': '42.6334, 71.3162', 'farmtype': 'pesticide', 'about': 'good farm', 'username': 'bruh', 'password': 'hello', 'date': datetime.now()}
+user = {'farmname': 'Fresh Farm', 'coordinates': '32.6334, 70.3162', 'farmtype': 'Organic', 'about': 'Fresh produce', 'username': 'bruh', 'password': 'hello', 'date': datetime.now()}
 
 
 def addFarm():
@@ -9,7 +9,8 @@ def addFarm():
     db.session.add(farm)
     db.session.commit() 
 
+addFarm()
 
 
 farms = db.session.query(User).all()
-print(farms[1].id)
+print(farms[-1].id)
