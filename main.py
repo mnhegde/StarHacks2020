@@ -87,6 +87,7 @@ def signup():
         return render_template('signup.html') 
 
 @app.route('/',  methods = ['GET','POST'])
+
 @app.route('/home',  methods = ['GET','POST'])
 def index():
     return render_template('home.html')
@@ -98,12 +99,18 @@ def home():
 
 @app.route('/farms', methods = ['GET','POST'])
 def farms():
-    farms = db.session.query(User).all()
-    return render_template('farms.html', farms=farms)
+    if request.method == 'POST':
+        id_num = request.json
+        farm = db.session.query(User).filter(User.id == id_num).first()
+        return farm.address
+    else:
+        farms = db.session.query(User).all()
+        return render_template('farms.html', farms=farms)
 
 @app.route('/maps/<username>', methods = ['GET', 'POST'])
 def maps(username):
-    return render_template('maps.html', username=username)
+    return render_template('maps.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

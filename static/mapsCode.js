@@ -1,18 +1,28 @@
 
+  path = window.location.pathname.split('/')
+  console.log(JSON.stringify(path[2]))
 
+  fetch('/farms', {
 
-function initMap(lat,lon) {
-    
-  lat = lat.replace('h', '.')
-  lon = lon.replace('h', '.')
-  lat = lat.parseFloat('${lat}')
-  lon = lat.parseFloat('${lon}')
-  let lowel;
-  let map;
-  lowel = {lat : lat, lng: lon};
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: lowel,
-      zoom: 8}
-    
-    )}
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(path[2])
+  })
+  .then(function(response){
+    return response.json()
 
+  })
+  .then(function (myJson) {
+    console.log(myJson)
+    chords = myJson.split(', ')
+    let lowell;
+    let map;
+    lowell = {lat : chords[0], lng: chords[1]};
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: lowell,
+        zoom: 8})
+
+    })
